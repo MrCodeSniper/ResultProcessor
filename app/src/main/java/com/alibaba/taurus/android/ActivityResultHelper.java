@@ -30,21 +30,21 @@ public class ActivityResultHelper {
         }
 
         private Observable<Output<T>> startHolderActivity(Request request, @Nullable OnPreOutput onPreResult) {
+//
+//            OnOutput onResult = uiTargetActivity ? onResultActivity() : onResultFragment();
+//            request.setOnResult(onResult);
+//            request.setOnPreResult(onPreResult);
+//
+//            HolderActivity.setRequest(request);
+//
+//            activitiesLifecycle.getOLiveActivity().subscribe(new Consumer<Activity>() {
+//                @Override
+//                public void accept(Activity activity) throws Exception {
+//                    activity.startActivity(new Intent(activity, HolderActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
+//                }
+//            });
 
-            OnOutput onResult = uiTargetActivity ? onResultActivity() : onResultFragment();
-            request.setOnResult(onResult);
-            request.setOnPreResult(onPreResult);
-
-            HolderActivity.setRequest(request);
-
-            activitiesLifecycle.getOLiveActivity().subscribe(new Consumer<Activity>() {
-                @Override
-                public void accept(Activity activity) throws Exception {
-                    activity.startActivity(new Intent(activity, HolderActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
-                }
-            });
-
-            return subject;
+            return null;
         }
     }
 }
