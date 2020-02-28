@@ -11,6 +11,9 @@ import io.reactivex.functions.Action;
 
 public class HolderTestActivity extends Activity {
 
+    /**
+     * 分顯點 可能造成內存洩漏  1.最小化分割只存callback2.有沒有其他方式 單例？ 3.什麼時機回收
+     */
     private static RouteIntent routeIntent;
 
     public static void setRouteIntent(RouteIntent routeIntent) {

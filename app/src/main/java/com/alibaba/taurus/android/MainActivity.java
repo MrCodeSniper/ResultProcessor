@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import io.reactivex.functions.Consumer;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -34,15 +36,26 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
-        HolderTestActivity.startActivityForResultCallback(this, new Intent(this, SecondActivity.class), new ResultCallback() {
-            @Override
-            public void onSuccess(int requestCode, int resultCode, Intent data) {
-                Toast.makeText(MainActivity.this,"onSuccess"+data.getStringExtra("xxx"),Toast.LENGTH_SHORT).show();
-            }
+//        HolderTestActivity.startActivityForResultCallback(this, new Intent(this, SecondActivity.class), new ResultCallback() {
+//            @Override
+//            public void onSuccess(int requestCode, int resultCode, Intent data) {
+//                Toast.makeText(MainActivity.this,"onSuccess"+data.getStringExtra("xxx"),Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onError(Throwable throwable) {
+//                Toast.makeText(MainActivity.this,"onError"+throwable.getMessage(),Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
+
+        Intent intent=new Intent(this,SecondActivity.class);
+        intent.putExtra("TAG","uuyu");
+        ActivityResultHelper.startActivityForResult(getSupportFragmentManager(),intent,0)
+        .subscribe(new Consumer<ActivityResult>() {
             @Override
-            public void onError(Throwable throwable) {
-                Toast.makeText(MainActivity.this,"onError"+throwable.getMessage(),Toast.LENGTH_SHORT).show();
+            public void accept(ActivityResult activityResult) throws Exception {
+                Toast.makeText(MainActivity.this,activityResult.getData().getStringExtra("xxx")+"",Toast.LENGTH_SHORT).show();
             }
         });
     }
